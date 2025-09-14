@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Secure your account with a phone number</title>
+  <meta name="color-scheme" content="light dark" />
+  <meta name="robots" content="noindex" />
+  <style>
+    :root{
+      --bg:#0b0c10;--card:#111317;--text:#eaeef5;--muted:#9aa6b2;
+      --accent:#4f8cff;--accent-600:#3a74e0;--border:#1d2129;--shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f6f7fb;--card:#fff;--text:#0f172a;--muted:#475569;--accent:#155ee7;--accent-600:#0e47b5;--border:#e5e7eb;--shadow:0 10px 25px rgba(0,0,0,.08)}
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial;
+      background:radial-gradient(1200px 800px at 20% -10%, rgba(79,140,255,.25), transparent 40%),
+                 radial-gradient(1000px 700px at 120% 120%, rgba(34,197,94,.18), transparent 45%),var(--bg);
+      color:var(--text);display:flex;align-items:center;justify-content:center;padding:24px
+    }
+    .card{width:min(780px,100%);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0)),var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow)}
+    .brand{display:flex;align-items:center;gap:10px;margin-bottom:6px;user-select:none}
+    .brand svg{width:22px;height:22px}.brand-name{font-weight:700;letter-spacing:.2px;font-size:14px}
+    .header{display:flex;align-items:center;gap:10px;margin:8px 0 12px}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(79,140,255,.12);color:var(--accent);border:1px solid rgba(79,140,255,.25)}
+    .title{font-size:26px;line-height:1.25;margin:8px 0 10px;font-weight:700}
+    .lead{margin:0 0 16px;color:var(--muted);font-size:15px}
+    .benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 12px}
+    .benefit{background:transparent;border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+    .benefit .icon{font-size:18px;line-height:1;margin-top:2px}
+    .benefit .text{font-size:14px;color:var(--text)}
+    .muted{color:var(--muted);font-size:13px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+    .btn{appearance:none;border:none;cursor:pointer;border-radius:10px;padding:12px 16px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:10px;transition:transform .04s ease, background-color .15s ease, box-shadow .15s ease}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{color:#fff;background:linear-gradient(180deg,var(--accent),var(--accent-600));box-shadow:0 6px 18px rgba(79,140,255,.35)}
+    .btn-secondary{color:var(--text);background:transparent;border:1px solid var(--border)}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12px;background:rgba(148,163,184,.15);padding:2px 6px;border-radius:6px;border:1px solid var(--border)}
+    .footer{margin-top:16px}
+    .error{color:#ef4444;font-size:13px;display:none;margin-top:8px}
+    .hint{margin-top:8px}
+    @media (max-width:720px){.benefits{grid-template-columns:1fr}}
+    a.link{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+    a.link:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <div class="brand" aria-label="Brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2l7 3v6c0 5-3.5 9-7 11-3.5-2-7-6-7-11V5l7-3z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8.8 12.2l2.4 2.4 4-4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand-name" id="brandName">Zappsec demo</div>
+    </div>
+
+    <div class="header"><span class="badge" aria-hidden="true">Account recovery</span></div>
+
+    <h1 id="title" class="title">Add your phone number (required)</h1>
+
+    <p class="lead">
+      To keep your account secure and help you get back in quickly, we’ll verify your phone number now.
+      <strong>Next, you’ll set up an authenticator app (TOTP) for sign-in protection.</strong>
+    </p>
+
+    <section class="benefits" aria-label="Benefits">
+      <div class="benefit">
+        <span class="icon" aria-hidden="true">📱</span>
+        <div class="text"><strong>Fast recovery.</strong> Use a one-time SMS code if you ever forget your password.</div>
+      </div>
+      <div class="benefit">
+        <span class="icon" aria-hidden="true">🔐</span>
+        <div class="text"><strong>Extra protection.</strong> Confirms it’s really you when you need help signing in.</div>
+      </div>
+    </section>
+
+    <div class="muted">
+      On the next screen, choose <span class="kbd">Phone</span> and enter your number to continue.
+      After that, you’ll be prompted to set up your <span class="kbd">Authenticator app (TOTP)</span>.
+    </div>
+
+    <div class="actions">
+      <button id="continueBtn" class="btn btn-primary" disabled>Continue</button>
+      <button id="helpBtn" class="btn btn-secondary" type="button">Why am I seeing this?</button>
+      <a id="returnLink" class="link" href="#" style="display:none" rel="noopener noreferrer">Back to sign-in</a>
+    </div>
+
+    <div id="err" class="error" role="alert">We couldn’t resume your session. Please close this tab and sign in again.</div>
+    <div id="hint" class="muted hint" style="display:none"></div>
+
+    <div class="footer muted">By continuing, you agree to receive one-time security codes for account recovery.</div>
+  </main>
+
+  <script>
+  (function(){
+    function getParam(names){
+      const url = new URL(window.location.href);
+      const search = new URLSearchParams(url.search);
+      const hash   = new URLSearchParams((url.hash || '').replace(/^#/, ''));
+      const keys = Array.isArray(names) ? names : [names];
+      for (const k of keys){
+        if (search.has(k)) return search.get(k);
+        if (hash.has(k))   return hash.get(k);
+      }
+      return null;
+    }
+
+    // Optional runtime brand override: ?brand=Acme%20Health
+    const brandParam = getParam(["brand","b"]);
+    if (brandParam) {
+      const el = document.getElementById("brandName");
+      if (el) el.textContent = brandParam;
+    }
+
+    // Strivacity provides these when this page is reached via RedirectRequest
+    let callback = getParam(["callback_url","callbackUrl","continue_url","continueUrl"]);
+    const state  = getParam(["state","State"]);
+
+    // Some deployments base64-url encode callback; try to decode if it looks encoded.
+    if (callback && /^[A-Za-z0-9_\-]+=*$/.test(callback) && !/^https?:\/\//i.test(callback)) {
+      try {
+        const decoded = atob(callback.replace(/-/g,'+').replace(/_/g,'/'));
+        if (/^https?:\/\//i.test(decoded)) callback = decoded;
+      } catch(e){}
+    }
+
+    const btn  = document.getElementById("continueBtn");
+    const help = document.getElementById("helpBtn");
+    const err  = document.getElementById("err");
+    const hint = document.getElementById("hint");
+    const returnLink = document.getElementById("returnLink");
+
+    // Provide a visible fallback if a ?return= URL was supplied
+    const fallback = getParam(["return","app","signin"]);
+    if (fallback) {
+      returnLink.href = fallback;
+      returnLink.style.display = "inline";
+    }
+
+    // Enable Continue only if we have what we need
+    if (callback && state) {
+      btn.disabled = false;
+      hint.style.display = "none";
+    } else {
+      btn.disabled = true;
+      hint.textContent = "No active session was found. If you opened this page directly, close it and sign in again.";
+      hint.style.display = "block";
+    }
+
+    btn.addEventListener("click", function(){
+      if (!callback || !state){
+        err.style.display = "block";
+        return;
+      }
+      try{
+        const u = new URL(callback);
+        if (!u.searchParams.get("state")) u.searchParams.set("state", state);
+        window.location.href = u.toString();
+      }catch(e){
+        err.style.display = "block";
+      }
+    });
+
+    help.addEventListener("click", function(){
+      alert("We’ll verify your phone for recovery, then guide you to set up an authenticator app (TOTP) to protect sign-ins.");
+    });
+  })();
+  </script>
+
+  <noscript>
+    <div style="max-width:780px;margin:16px auto;color:#e11d48;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;">
+      JavaScript is required to continue. Please enable JavaScript and reload this page.
+    </div>
+  </noscript>
+</body>
+</html>
