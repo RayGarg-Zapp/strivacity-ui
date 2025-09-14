@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Secure your account with a phone number</title>
   <meta name="color-scheme" content="light dark" />
+  <meta name="robots" content="noindex" />
   <style>
     :root{
       --bg: #0b0c10;
@@ -14,8 +15,6 @@
       --accent:#4f8cff;
       --accent-600:#3a74e0;
       --border:#1d2129;
-      --ok:#22c55e;
-      --warn:#f59e0b;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
     @media (prefers-color-scheme: light){
@@ -38,10 +37,15 @@
       width:min(780px, 100%);
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , var(--card);
       border:1px solid var(--border);
-      border-radius:18px; padding:28px 28px;
+      border-radius:18px; padding:22px 24px;
       box-shadow:var(--shadow);
     }
-    .header{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+    .brand{
+      display:flex; align-items:center; gap:10px; margin-bottom:6px; user-select:none;
+    }
+    .brand svg{ width:22px; height:22px; }
+    .brand-name{ font-weight:700; letter-spacing:.2px; font-size:14px; }
+    .header{ display:flex; align-items:center; gap:10px; margin:8px 0 12px; }
     .badge{
       display:inline-flex; align-items:center; gap:8px;
       font-size:12px; padding:6px 10px; border-radius:999px;
@@ -50,7 +54,7 @@
     }
     .title{ font-size:26px; line-height:1.25; margin:8px 0 10px; font-weight:700;}
     .lead{ margin:0 0 16px; color:var(--muted); font-size:15px; }
-    .benefits{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin:18px 0 22px;}
+    .benefits{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin:18px 0 12px;}
     .benefit{
       background:transparent; border:1px solid var(--border); border-radius:12px; padding:14px 14px;
       display:flex; gap:10px; align-items:flex-start;
@@ -58,7 +62,7 @@
     .benefit .icon{ font-size:18px; line-height:1; margin-top:2px;}
     .benefit .text{ font-size:14px; color:var(--text); }
     .muted{ color:var(--muted); font-size:13px; }
-    .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:8px;}
+    .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:12px;}
     .btn{
       appearance:none; border:none; cursor:pointer;
       border-radius:10px; padding:12px 16px; font-weight:600; font-size:14px;
@@ -73,38 +77,51 @@
     .btn-secondary{
       color:var(--text); background:transparent; border:1px solid var(--border);
     }
-    .kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      font-size:12px; background:rgba(148,163,184,.15); padding:2px 6px; border-radius:6px; border:1px solid var(--border); }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size:12px; background:rgba(148,163,184,.15); padding:2px 6px; border-radius:6px; border:1px solid var(--border);
+    }
     .footer{ margin-top:16px; }
     .error{ color:#ef4444; font-size:13px; display:none; margin-top:8px; }
-    .note{ margin-top:8px; }
     @media (max-width:720px){ .benefits{ grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <main class="card" role="main" aria-labelledby="title">
+    <!-- Inline logo + wordmark (no external files) -->
+    <div class="brand" aria-label="Brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2l7 3v6c0 5-3.5 9-7 11-3.5-2-7-6-7-11V5l7-3z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8.8 12.2l2.4 2.4 4-4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand-name" id="brandName">Zappsec demo</div>
+    </div>
+
     <div class="header">
       <span class="badge" aria-hidden="true">Account recovery</span>
     </div>
-    <h1 id="title" class="title">Add your phone number (recommended)</h1>
+
+    <h1 id="title" class="title">Add your phone number (required)</h1>
+
     <p class="lead">
-      If you ever forget your password, you can get back in fast with a one-time code sent to your phone.
-      This is optional—you can skip on the next step and still recover via email.
+      To keep your account secure and help you get back in quickly, we’ll verify your phone number now.
+      <strong>Next, you’ll set up an authenticator app (TOTP) for sign-in protection.</strong>
     </p>
 
     <section class="benefits" aria-label="Benefits">
       <div class="benefit">
         <span class="icon" aria-hidden="true">📱</span>
-        <div class="text"><strong>Faster resets.</strong> SMS codes are quick when you don’t have inbox access.</div>
+        <div class="text"><strong>Fast recovery.</strong> Use a one-time SMS code if you ever forget your password.</div>
       </div>
       <div class="benefit">
         <span class="icon" aria-hidden="true">🔐</span>
-        <div class="text"><strong>Extra safety.</strong> Adds a second contact method tied to your account.</div>
+        <div class="text"><strong>Extra protection.</strong> Confirms it’s really you when you need help signing in.</div>
       </div>
     </section>
 
     <div class="muted">
-      On the next screen, choose <span class="kbd">Phone</span>, enter your number, and you’re done. You can also <em>Skip</em> to continue without adding a phone.
+      On the next screen, choose <span class="kbd">Phone</span> and enter your number to continue.
+      After that, you’ll be prompted to set up your <span class="kbd">Authenticator app (TOTP)</span>.
     </div>
 
     <div class="actions">
@@ -114,7 +131,7 @@
 
     <div id="err" class="error" role="alert">We couldn’t resume your session. Please close this tab and sign in again.</div>
 
-    <div class="footer muted note">
+    <div class="footer muted">
       By continuing, you agree to receive one-time security codes for account recovery.
     </div>
   </main>
@@ -129,7 +146,15 @@
         }
         return null;
       }
-      // Accept common variants just in case
+
+      // Runtime brand override: ?brand=Acme%20Health
+      const brandParam = getParam(["brand","b"]);
+      if (brandParam) {
+        const el = document.getElementById("brandName");
+        if (el) el.textContent = brandParam;
+      }
+
+      // Strivacity supplies these on RedirectRequest
       const callback = getParam(["callback_url","callbackUrl","continue_url","continueUrl"]);
       const state    = getParam(["state","State"]);
 
@@ -144,7 +169,6 @@
         }
         try{
           const u = new URL(callback);
-          // Don’t clobber existing params; just ensure state is present
           if (!u.searchParams.get("state")) u.searchParams.set("state", state);
           window.location.href = u.toString();
         }catch(e){
@@ -153,9 +177,14 @@
       });
 
       help.addEventListener("click", function(){
-        alert("Adding a phone number lets you reset your password with a one-time code. You can skip this step and still recover via email.");
+        alert("We’ll verify your phone for recovery, then guide you to set up an authenticator app (TOTP) to protect sign-ins.");
       });
     })();
   </script>
+  <noscript>
+    <div style="max-width:780px;margin:16px auto;color:#e11d48;font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;">
+      JavaScript is required to continue. Please enable JavaScript and reload this page.
+    </div>
+  </noscript>
 </body>
 </html>
